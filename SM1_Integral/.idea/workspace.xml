@@ -73,6 +73,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SM1" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -99,6 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1665416195716</updated>
       <workItem from="1665416195719" duration="79000" />
+      <workItem from="1665416299292" duration="24000" />
     </task>
     <servers />
   </component>
