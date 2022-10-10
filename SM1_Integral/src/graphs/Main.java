@@ -73,7 +73,7 @@ public class Main {
     public static List<List<Double>> creationOfEps(List<Double> series){
         List<List<Double>> eps = new ArrayList<List<Double>>();
         for (double s:
-             series) {
+                series) {
             ArrayList<Double> currentEps = new ArrayList<Double>();
             currentEps.add(calculationOfEps(s));
             eps.add(currentEps);
@@ -84,3 +84,4 @@ public class Main {
 
 
 }
+
