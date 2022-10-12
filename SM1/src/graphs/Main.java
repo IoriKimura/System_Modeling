@@ -13,12 +13,12 @@ public class Main {
         List<List<Double>> series = create_series(x0,y0, r0);
         List<List<Double>> eps = create_eps(series);
 
-        double sums = 0;
+        List<Double> sums = new ArrayList<Double>();
         List<Double> listOfEpsSums = new ArrayList<Double>();
 
         for(int i = 0; i < series.size(); i++){
-            sums = ((series.get(0).get(i) + series.get(1).get(i) + series.get(2).get(i) + series.get(3).get(i) + series.get(4).get(i)) / series.size());
-            listOfEpsSums.add(Math.abs((sums - Math.PI) / Math.PI));
+            sums.add((series.get(0).get(i) + series.get(1).get(i) + series.get(2).get(i) + series.get(3).get(i) + series.get(4).get(i)) / series.size());
+            listOfEpsSums.add(Math.abs((sums.get(i) - Math.PI) / Math.PI));
         }
 
         for(int i = 0; i < 5; i++){
@@ -30,7 +30,8 @@ public class Main {
         for(int i = 0; i < 5; i++)
             System.out.println("f\"eps[" + i + "]" + " is " + eps.get(i));
         System.out.println();
-        System.out.println("f\"sums is " + sums);
+        for(int i = 0; i < 5; i++)
+            System.out.println("f\"sums[" + i + "] is " + sums.get(i));
         System.out.println();
         for(int i = 0; i < 5; i++)
             System.out.println("f\"listOfEpsSums[" + i + "]" + " is " + listOfEpsSums.get(i));
@@ -60,6 +61,7 @@ public class Main {
         result_pi = (4 * m )/exp_nmb;
         return result_pi;
     }
+
     public static List<List<Double>> create_series(double x0, double y0, double r0){
         List<List<Double>> series = new ArrayList<List<Double>>();
         for(int num = 0; num < 5; num++){
@@ -75,9 +77,11 @@ public class Main {
         return series;
 
     }
+
     public static double calculate_eps(double seria){
         return Math.abs((seria - Math.PI) / Math.PI);
     }
+
     public static List<List<Double>> create_eps(List<List<Double>> series){
         List<List<Double>> listOfEps = new ArrayList<List<Double>>();
         for (List<Double> s : series) {
