@@ -35,11 +35,11 @@ def random_period(Y: sempai.ndarray):
 
 
 def pirson(Y, np):
-    criterii = 0.0
+    pirson_cr = 0.0
     for j in range(len(Y)):
         n = Y[j] / np
-        criterii += (n - np) ** 2 / np
-    return criterii
+        pirson_cr += (n - np) ** 2 / np
+    return pirson_cr
 
 
 def main():
