@@ -28,10 +28,11 @@ def dispersion(X, M):
 
 def random_period(Y: sempai.ndarray):
     count = 0
-    for i in range(1, len(Y)):
-        count += 1
-        if f"{Y[i]:.3f}" == f"{Y[0]:.3f}":
-            return count
+    for i in range(0, len(Y)):
+        for j in range(1, len(Y)):
+            count += 1
+            if f"{Y[j]:.3f}" == f"{Y[i]:.3f}":
+                return count
 
 
 def pirson(Y, np):
@@ -91,12 +92,12 @@ def main():
     for i in range(len(Yrand_nums)):
         plt.title(f"Гистограмма при {i}")
         plt.hist(Yrand_nums[i], bins=10, density=True)
-        if My_Periods[i] is not None:
-            Pirsons[i] = pirson(Yrand_nums[i], My_Periods[i])
+
+        Pirsons[i] = pirson(Yrand_nums[i], My_Periods[i])
         plt.show()
 
     for p in Pirsons:
-        print(f"Значение пирсона:{p}")
+        print(f"Значение пирсона:{p:.3e}")
 
 
 if __name__ == "__main__":
