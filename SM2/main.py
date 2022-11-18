@@ -1,3 +1,5 @@
+import math
+
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as sempai
@@ -34,13 +36,22 @@ def random_period(Y: sempai.ndarray):
             if f"{Y[j]:.3f}" == f"{Y[i]:.3f}":
                 return count
 
+def frequency(Y):
+    numY = Y.copy()
+    for i in range(len(numY)):
+        numY[i] = f"{numY[i]:.3f}"
+    unique, counts = sempai.unique(numY, return_counts=True)
+    res = {}
+    for u, c in zip(unique, counts):
+        res[u] = c
+    return res
+
 
 def pirson(Y, np):
     pirson_cr = 0.0
-    for j in range(len(Y)):
-        n = Y[j] / np
-        pirson_cr += (n - np) ** 2 / np
-    return pirson_cr
+    for i in range(10):
+        pirson_cr += float(((Y[i] - np[f"{Y[i]:.3f}"])**2 / np[f"{Y[i]:.3f}"]))
+    return math.sqrt(pirson_cr)
 
 
 def main():
@@ -68,6 +79,7 @@ def main():
             Yi[j] = random_num(A, B, Xrand_nums[i][j])
         Yrand_nums[i] = Yi
 
+
     M_array = sempai.empty(4, dtype=sempai.ndarray)
     D_array = sempai.empty(4, dtype=sempai.ndarray)
     My_Periods = sempai.empty(4, dtype=sempai.ndarray)
@@ -93,7 +105,7 @@ def main():
         plt.title(f"Гистограмма при {i}")
         plt.hist(Yrand_nums[i], bins=10, density=True)
 
-        Pirsons[i] = pirson(Yrand_nums[i], My_Periods[i])
+        Pirsons[i] = pirson(Yrand_nums[i], frequency(Yrand_nums[i]))
         plt.show()
 
     for p in Pirsons:
