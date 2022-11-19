@@ -50,7 +50,7 @@ def frequency(Y):
 def pirson(Y, np):
     pirson_cr = 0.0
     for i in range(10):
-        pirson_cr += float(((Y[i] - np[f"{Y[i]:.3f}"])**2 / np[f"{Y[i]:.3f}"]))
+        pirson_cr += ((Y[i] - np[f"{Y[i]:.3f}"])**2 / np[f"{Y[i]:.3f}"])
     return math.sqrt(pirson_cr)
 
 
@@ -88,16 +88,16 @@ def main():
 
     for i in range(4):
         M_array[i] = math_wait(Yrand_nums[i])
-        print(f"Мат.ожидание {i + 1}:{M_array[i]}")
+        print(f"Мат.ожидание {i + 1}: {M_array[i]}")
         D_array[i] = dispersion(Yrand_nums[i], M_array[i])
-        print(f"Дисперсия {i + 1}:{D_array[i]}")
+        print(f"Дисперсия {i + 1}: {D_array[i]}")
         My_Periods[i] = random_period(Yrand_nums[i])
 
         Rnd_Periods[i] = random_period(sempai.random.default_rng(12345).random(size=10 ** (i + 2)))
 
     for i in range(len(My_Periods)):
-        print(f"Период собственного алгоритма:{My_Periods[i]}")
-        print(f"Период встроенного генератора:{Rnd_Periods[i]}")
+        print(f"Период собственного алгоритма: {My_Periods[i]}")
+        print(f"Период встроенного генератора: {Rnd_Periods[i]}")
 
     Pirsons = sempai.empty(4, dtype=sempai.ndarray)
 
@@ -108,8 +108,13 @@ def main():
         Pirsons[i] = pirson(Yrand_nums[i], frequency(Yrand_nums[i]))
         plt.show()
 
+    for i in range(4):
+        plt.title(f"Гистограмма при {i} для встроенного генератора")
+        plt.hist(sempai.random.default_rng(12345).random(size=10 ** (i + 2)), bins=10, density=True)
+        plt.show()
+
     for p in Pirsons:
-        print(f"Значение пирсона:{p:.3e}")
+        print(f"Значение Критерия Пирсона: {p:.3e}")
 
 
 if __name__ == "__main__":
