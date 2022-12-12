@@ -80,7 +80,7 @@ def main():
     Tz = []
     Ts = []
     for i in range(2001):
-        Tz.insert(i, -math.log(random()) / lamb)    
+        Tz.insert(i, -math.log(random()) / lamb)
         print(f'TZ(new) {i + 1} : {TZ[i]}')
         Ts.insert(i, -math.log(random()) / mu)
         print(f'TS(new) {i + 1} : {TS[i]}')
